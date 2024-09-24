@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sate2_spring.mapper.StationMapper">
+    <insert id="add" parameterType="com.example.sate2_spring.bean.Station">
+        insert into Station
+        values
+            (#{id},#{name},#{description},#{position_x},#{position_y},#{position_z})
+    </insert>
+    <delete id="deleteBook">
+        delete from Station where id = #{id}
+    </delete>
+    <select id="getAllBook" resultType="Station">
+        select *
+        from Station;
+    </select>
+    <select id="getById" resultType="com.example.sate2_spring.bean.Station">
+        select * from Station where id = #{id}
+    </select>
+    <update id="update">
+        update Station
+        set name= #{name}, description = #{description}, position_x = #{position_x},
+            position_y = #{position_y}, position_z = #{position_z}
+        where id  = #{id}
+    </update>
+
+    <insert id="addGlobalStartle" parameterType="com.example.sate2_spring.bean.GlobalStar.GlobalStar_TLE">
+        insert into GlobalStar_TLE
+        values
+            (#{id},#{name},#{line_first},#{line_second})
+    </insert>
+    <update id="updateGlobalStartle">
+        update GlobalStar_TLE
+        set name= #{name}, line_first= #{line_first}, line_second = #{line_second}
+        where id  = #{id}
+    </update>
+
+    <delete id="deleteGlobalStar_TLE">
+        delete from GlobalStar_TLE where id = #{id}
+    </delete>
+
+    <select id="GlobalStartles_getAll" resultType="com.example.sate2_spring.bean.GlobalStar.GlobalStar_TLE">
+        select *
+        from GlobalStar_TLE;
+    </select>
+    <select id="getByIdGlobalStar_TLE" resultType="com.example.sate2_spring.bean.GlobalStar.GlobalStar_TLE">
+        select * from GlobalStar_TLE where id = #{id}
+    </select>
+
+    <insert id="addGlobalStarsix" parameterType="com.example.sate2_spring.bean.GlobalStar.GlobalStar_six">
+        insert into GlobalStar_six
+        values
+            (#{id},#{name},#{S_a},#{S_e},#{S_i},#{S_o},#{S_u},#{S_r})
+    </insert>
+    <update id="updateGlobalStarsix">
+        update GlobalStar_six
+        set name= #{name}, S_a= #{S_a},S_e= #{S_e}, S_i= #{S_i},S_o= #{S_o},S_u= #{S_u},S_r= #{S_r}
+            where id  = #{id}
+    </update>
+
+    <delete id="deleteGlobalStar_six">
+        delete from GlobalStar_six where id = #{id}
+    </delete>
+
+    <select id="GlobalStarsixs_getAll" resultType="com.example.sate2_spring.bean.GlobalStar.GlobalStar_six">
+        select *
+        from GlobalStar_six;
+    </select>
+    <select id="getByIdGlobalStar_six" resultType="com.example.sate2_spring.bean.GlobalStar.GlobalStar_six">
+        select * from GlobalStar_six where id = #{id}
+    </select>
+
+
+
+
+    <insert id="addIridiumtle" parameterType="com.example.sate2_spring.bean.Iridium.Iridium_TLE">
+        insert into Iridium_TLE
+        values
+            (#{id},#{name},#{line_first},#{line_second})
+    </insert>
+    <update id="updateIridiumtle">
+        update Iridium_TLE
+        set name= #{name}, line_first= #{line_first}, line_second = #{line_second}
+        where id  = #{id}
+    </update>
+
+    <delete id="deleteIridium_TLE">
+        delete from Iridium_TLE where id = #{id}
+    </delete>
+
+    <select id="Iridiumtles_getAll" resultType="com.example.sate2_spring.bean.Iridium.Iridium_TLE">
+        select *
+        from Iridium_TLE;
+    </select>
+    <select id="getByIdIridium_TLE" resultType="com.example.sate2_spring.bean.Iridium.Iridium_TLE">
+        select * from Iridium_TLE where id = #{id}
+    </select>
+
+    <insert id="addIridiumsix" parameterType="com.example.sate2_spring.bean.Iridium.Iridium_six">
+        insert into Iridium_six
+        values
+            (#{id},#{name},#{S_a},#{S_e},#{S_i},#{S_o},#{S_u},#{S_r})
+    </insert>
+    <update id="updateIridiumsix">
+        update Iridium_six
+        set name= #{name}, S_a= #{S_a},S_e= #{S_e}, S_i= #{S_i},S_o= #{S_o},S_u= #{S_u},S_r= #{S_r}
+        where id  = #{id}
+    </update>
+
+    <delete id="deleteIridium_six">
+        delete from Iridium_six where id = #{id}
+    </delete>
+
+    <select id="Iridiumsixs_getAll" resultType="com.example.sate2_spring.bean.Iridium.Iridium_six">
+        select *
+        from Iridium_six;
+    </select>
+    <select id="getByIdIridium_six" resultType="com.example.sate2_spring.bean.Iridium.Iridium_six">
+        select * from Iridium_six where id = #{id}
+    </select>
+    <insert id="addTelesattle" parameterType="com.example.sate2_spring.bean.Telesat.Telesat_TLE">
+        insert into Telesat_TLE
+        values
+            (#{id},#{name},#{line_first},#{line_second})
+    </insert>
+    <update id="updateTelesattle">
+        update Telesat_TLE
+        set name= #{name}, line_first= #{line_first}, line_second = #{line_second}
+        where id  = #{id}
+    </update>
+
+    <delete id="deleteTelesat_TLE">
+        delete from Telesat_TLE where id = #{id}
+    </delete>
+
+    <select id="Telesattles_getAll" resultType="com.example.sate2_spring.bean.Telesat.Telesat_TLE">
+        select *
+        from Telesat_TLE;
+    </select>
+    <select id="getByIdTelesat_TLE" resultType="com.example.sate2_spring.bean.Telesat.Telesat_TLE">
+        select * from Telesat_TLE where id = #{id}
+    </select>
+
+    <insert id="addTelesatsix" parameterType="com.example.sate2_spring.bean.Telesat.Telesat_six">
+        insert into Telesat_six
+        values
+            (#{id},#{name},#{S_a},#{S_e},#{S_i},#{S_o},#{S_u},#{S_r})
+    </insert>
+    <update id="updateTelesatsix">
+        update Telesat_six
+        set name= #{name}, S_a= #{S_a},S_e= #{S_e}, S_i= #{S_i},S_o= #{S_o},S_u= #{S_u},S_r= #{S_r}
+        where id  = #{id}
+    </update>
+
+    <delete id="deleteTelesat_six">
+        delete from Telesat_six where id = #{id}
+    </delete>
+
+    <select id="Telesatsixs_getAll" resultType="com.example.sate2_spring.bean.Telesat.Telesat_six">
+        select *
+        from Telesat_six;
+    </select>
+    <select id="getByIdTelesat_six" resultType="com.example.sate2_spring.bean.Telesat.Telesat_six">
+        select * from Telesat_six where id = #{id}
+    </select>
+
+</mapper>

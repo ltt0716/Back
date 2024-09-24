@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>卫星指定时间段展示页面</title>
+  <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico" />
+  <script src="../static/libs/Cesium-1.113/Build/Cesium/Cesium.js"></script>
+  <link href="../static/libs/Cesium-1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <script src="../static/libs/satellite.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../static/css/Css_1.css">
+
+</head>
+<body>
+<div class="parent">
+  <label for="StartTime">开始时间:</label>
+  <input class="child" type="datetime-local" id="StartTime">
+  <label style="margin-left: 20px" for="StopTime">结束时间:</label>
+  <input class="child" type="datetime-local" id="StopTime">
+    <label><input style="margin-left: 40px"  type="checkbox" name="option" value="BEIDOU">北斗</label>
+    <label><input type="checkbox" name="option" value="GPS">GPS</label>
+    <label><input type="checkbox" name="option" value="GLONASS">GLONASS</label>
+    <label><input type="checkbox" name="option" value="Galileo">Galileo</label>
+  <button class="child" style="margin-left: 40px"  onclick="getData()">加载卫星</button>
+</div>
+<div id="cesiumContainer" class="cesiumContainer"></div>
+<script >
+  // 加载Cesium地球模型
+  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNGZjZjk3OS03OGZkLTQxNmYtODk4My0zMjkyMzRjODIxNjMiLCJpZCI6MTkyNDAzLCJpYXQiOjE3MDY0MjU2NDR9.W7PK9R2H7qG9pUqsp-2wnXhKj9dE-RFx1SubhIL-Q1g';
+  const viewer = new Cesium.Viewer("cesiumContainer", {
+    shouldAnimate: true,
+  });
+  var dataSource = new Cesium.CzmlDataSource();
+  dataSource.load("../static/data/example.czml").then(function () {
+    // dataSource.load("/usr/local/MyApp/example.czml").then(function () {
+    var  entities=dataSource.entities.values
+    for( var i=0;i<entities.length;i++)
+    {
+      console.log(entities[i].id,entities[i].name,entities[i].newinfo,entities[i].billboard,entities[i].availability)
+    }
+
+    viewer.dataSources.add(dataSource);
+    viewer.zoomTo(dataSource);
+
+  });
+</script>
+<script>
+  // 多选radio
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        checkbox.parentElement.classList.add('selected');
+      } else {
+        checkbox.parentElement.classList.remove('selected');
+      }
+    });
+  });
+</script>
+<script>
+  function getData() {
+    //获取时间
+    const StartTime = document.getElementById('StartTime').value;
+    const StopTime = document.getElementById('StopTime').value;
+    //时间格式转换
+    const Start_Time = new Date(StartTime);
+    const Stop_Time = new Date(StopTime);
+    const StartTime_ISO = (Start_Time.toISOString()).substring(0, (Start_Time.toISOString()).length - 5) + "Z";
+    const StopTime_ISO = (Stop_Time.toISOString()).substring(0, (Stop_Time.toISOString()).length - 5) + "Z";
+    //获取所要查看的卫星系统
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const selectedOptions = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+    // 转换选中卫星数据格式
+    var Systems_Selected= JSON.stringify(selectedOptions);
+    //发起请求-获取某一时间段的卫星信息
+    var url="/SseInterval?"+"StartTime="+StartTime_ISO+"&StopTime="+StopTime_ISO+"&Systems="+encodeURIComponent(Systems_Selected);
+    //监听message事件，当接收到服务器端发送的消息时触发
+    var eventSource = new EventSource(url);
+    eventSource.addEventListener('custom-event', function(event) {
+
+      var currentTime = new Date();
+      console.log(currentTime);
+      var jsonObject = JSON.parse(event.data);
+      var dataSource = new Cesium.CzmlDataSource();
+      viewer.dataSources.removeAll();
+      dataSource.load(jsonObject).then(function () {
+        viewer.dataSources.add(dataSource);
+        var entities = dataSource.entities.values;
+        console.log(entities.length);
+        closeEventSource();
+      });
+    });
+
+    // 定义关闭EventSource连接的方法
+    function closeEventSource() {
+      eventSource.close();
+    }
+  }
+</script>
+
+
+</body>
+</html>

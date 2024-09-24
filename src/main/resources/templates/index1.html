@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script src="../static/libs/Cesium-1.113/Build/Cesium/Cesium.js"></script>
+    <link href="../static/libs/Cesium-1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+    <script src="../static/libs/satellite.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/Css_1.css">
+
+</head>
+<style>
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50px; /* 侧栏宽度 */
+        height: 400px;
+        background-color: #333;
+        transition: width 0.5s ease-in-out; /* 平滑过渡效果 */
+    }
+
+    .sidebar.expanded {
+        width: 300px; /* 展开后的宽度 */
+    }
+
+    .panel {
+        width: 100%;
+        height: 100%;
+        background-color: #f0f0f0;
+
+        transition: transform 0.5s ease-in-out; /* 平滑过渡效果 */
+        transform: translateX(calc(-100% + 50px)); /* 初始位置在侧栏外部 */
+    }
+
+    .sidebar.expanded .panel {
+        transform: translateX(0); /* 展开后移回侧栏内 */
+    }
+
+    .toggle-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #444;
+        color: white;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+<body>
+<div class="sidebar">
+    <button class="toggle-button">隐藏</button>
+    <div class="panel">
+        <!-- 面板内容 -->
+        面板内容
+    </div>
+</div>
+<script>
+    document.querySelector('.toggle-button').addEventListener('click', function() {
+        var sidebar = this.closest('.sidebar');
+        sidebar.classList.toggle('expanded');
+    });
+</script>
+</body>
+</html>

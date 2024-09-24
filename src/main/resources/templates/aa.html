@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../static/libs/Cesium-1.113/Build/Cesium/Cesium.js"></script>
+  <link href="../static/libs/Cesium-1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <script src="../static/libs/satellite.js"></script>
+  <link rel="stylesheet" type="text/css" href="../static/css/Css_1.css">
+</head>
+<style>
+
+
+</style>
+<body >
+<div style="height: 100%">
+<div id="cesiumContainer" class="cesiumContainer"></div>
+</div>
+<script >
+  // 加载Cesium地球模型
+  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNGZjZjk3OS03OGZkLTQxNmYtODk4My0zMjkyMzRjODIxNjMiLCJpZCI6MTkyNDAzLCJpYXQiOjE3MDY0MjU2NDR9.W7PK9R2H7qG9pUqsp-2wnXhKj9dE-RFx1SubhIL-Q1g';
+  const viewer = new Cesium.Viewer("cesiumContainer",{
+    infoBox:false
+  });
+  //
+  var dataSource = new Cesium.CzmlDataSource();
+  // dataSource.load("../static/data/satellite_path2.czml").then(function () {
+  dataSource.load("../static/data/example.czml").then(function () {
+  // dataSource.load("/usr/local/MyApp/example.czml").then(function () {
+  //     var  entities=dataSource.entities.values
+  //     for( var i=0;i<entities.length;i++)
+  //     {
+  //         console.log(entities[i].id,entities[i].name,entities[i].newinfo,entities[i].billboard,entities[i].availability)
+  //     }
+  //
+    viewer.dataSources.add(dataSource);
+    viewer.zoomTo(dataSource);
+
+  });
+</script>
+
+
+</body>
+</html>

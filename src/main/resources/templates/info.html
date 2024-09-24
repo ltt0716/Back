@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/Css_1.css">
+</head>
+<body>
+<div class="container2">
+  <div class="top-left">
+      <div style="margin-left: 250px"><p class="font1">已有地面站</p></div>
+      <div style="position: relative;">
+          <table  style="border-collapse: separate;border-spacing: 5px;">
+              <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>name</th>
+                  <th>description</th>
+                  <th>笛卡尔坐标（X）</th>
+                  <th>笛卡尔坐标（Y）</th>
+                  <th>笛卡尔坐标（Z）</th>
+              </tr>
+              </thead>
+              <tbody style="z-index: 9999">
+              <tr th:each="station: ${stations}" >
+                  <td th:text="${station.getId()}" ></td>
+                  <td th:text="${station.getName()}"></td>
+                  <td th:text="${station.getDescription()}"></td>
+                  <td th:text="${station.getPosition_x()}"></td>
+                  <td th:text="${station.getPosition_y()}"></td>
+                  <td th:text="${station.getPosition_z()}"></td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <div class="top-right">
+      <div style="margin-left: 250px"><p class="font1">添加地面站</p></div>
+      <div style="width: 200px;height: 400px;margin-left: 100px">
+          <form role="form" action="http://localhost:8080/Station/add" method="post">
+              <div class="vertical">
+                  <label >ID</label><input style="width: 100px" type="text" id="id" name="id"/>
+                  <label>name</label><input  style="width: 100px" type="text" id="name" name="name"/>
+                  <label>描述</label><input  style="width: 100px" type="text" id="description" name="description"/>
+                  <label>坐标（X）</label><input  style="width: 200px" type="text" id="position_x" name="position_x"/>
+                  <label>坐标（Y）</label><input  style="width: 200px" type="text" id="position_y" name="position_y"/>
+                  <label>坐标（Z）</label><input  style="width: 200px" type="text" id="position_z" name="position_z"/>
+                  <!--        <label>image(非必填)</label><input  style="width: 100px" type="file" id="image"/>-->
+              </div>
+              <button type="submit" onclick="">添加</button>
+          </form>
+  </div>
+  </div>
+  <div class="bottom-left">
+  </div>
+  <div class="bottom-right">
+  </div>
+</div>
+</body>
+</html>
+
+
+

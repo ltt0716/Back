@@ -1,0 +1,121 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.cesiumContainer {
+    height: 800px;
+    width: 1350px;
+    padding-left: 50px;
+    margin: 0;
+    overflow: hidden;
+}
+.container {
+    display: flex; /* 将容器设置为 Flexbox 布局 */
+    justify-content: flex-start; /* 设置元素之间的距离平均分布 */
+    /*align-items: center; !* 将元素垂直居中 *!*/
+}
+.vertical {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    justify-content: space-around; /* 元素垂直分布 */
+
+}
+.radio-buttons {
+    display: flex;
+    /*flex-direction: column;*/
+}
+.container2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-left {
+    flex-basis: 47%;
+    height: 400px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    background-color: #00A7AA;
+}
+.top-right {
+    flex-basis: 47%;
+    height: 400px;
+    margin: 5px;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    background-color:#00bb00;
+}
+.bottom-left {
+    flex-basis: 47%;
+    height: 400px;
+    margin: 5px;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    background-color: #00aaaa;
+
+}
+.bottom-right {
+    flex-basis: 47%;
+    height: 400px;
+    margin: 5px;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    background-color: #00c4ff;
+}
+.font1{
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+
+    color:white;
+}
+
+
+.child {
+    width: 200px;
+    height: 30px;
+    padding: 5px; /* 可根据需要调整内边距 */
+    border: 1px solid #ccc; /* 添加边框 */
+    border-radius: 4px; /* 添加圆角 */
+}
+
+/* 样式化日期时间输入框 */
+input[type="datetime-local"] {
+    font-size: 14px; /* 设置字体大小 */
+    color: #333; /* 设置文字颜色 */
+    background-color: #f9f9f9; /* 设置背景颜色 */
+    border: 1px solid #ccc; /* 设置边框 */
+    border-radius: 4px; /* 设置圆角 */
+    padding: 5px; /* 设置内边距 */
+}
+
+/* 鼠标悬停时的样式 */
+input[type="datetime-local"]:hover {
+    border-color: #666; /* 修改边框颜色 */
+}
+
+/* 获得焦点时的样式 */
+input[type="datetime-local"]:focus {
+    outline: none; /* 移除默认的蓝色轮廓 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 添加焦点时的阴影效果 */
+}
+
+.headcss{
+    color: blue; /* 设置文字颜色为蓝色 */
+    font-size: 24px; /* 设置文字大小为 24 像素 */
+    font-weight: bold; /* 设置文字加粗 */
+    text-decoration: underline; /* 给文字添加下划线 */
+}

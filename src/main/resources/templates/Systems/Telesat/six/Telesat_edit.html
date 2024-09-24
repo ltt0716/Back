@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>低轨卫星系统</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        nav {
+            font-size: 1.5rem;
+
+        }
+        h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        li {
+            margin: 10px 20px;
+        }
+        th {
+            width: 100px;
+        }
+        label {
+            margin: auto;
+            padding-right: 20px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+    <style>
+
+        .custom-input {
+            display: inline-block;
+            position: relative;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        /* 输入框聚焦状态 */
+        .custom-input input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+        }
+
+        /* 输入框悬浮标签 */
+        .custom-input label {
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            background-color: white;
+            padding: 0 5px;
+            color: #777;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        /* 输入框填充内容后的悬浮标签效果 */
+        .custom-input input:not(:placeholder-shown) + label,
+        .custom-input input:focus + label {
+            top: -12px;
+            left: 10px;
+            font-size: 12px;
+            background-color: white;
+            padding: 0 5px;
+            color: #3498db;
+        }
+
+        /* 输入框 */
+        .custom-input input {
+            width: 200px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: white;
+            border: 1px solid black;
+            color: black;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:focus,
+        button:hover {
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+  
+</head>
+<body>
+<div class="custom-input" style=" width: 40%;margin-left: 32%;margin-top: 50px;height: 800px;
+ border: 2px solid #000000;border-radius: 10px;">
+    <label style="font-size: 25px;color: orange;font-weight: bold">修改</label>
+<div class="container" >
+    <form th:action="@{/Telesat/updateTelesatsix/}" method="post"
+          style="margin-top: 30px;display: flex;flex-direction: column;margin-left: 130px;width: 50%">
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;" >
+            <label for="id"style="font-size: 15px;color: blue;font-weight: bold">ID:</label>
+            <input type="text"  id="id" name="id" th:value="${six.getId()}" readonly>
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="name" style="font-size: 15px;color: blue;font-weight: bold">name:</label>
+            <input type="text"  id="name" name="name" class="form-control"th:value="${six.getName()}">
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="S_a" style="font-size: 15px;color: blue;font-weight: bold">半长轴:</label>
+            <input type="text"  id="S_a" name="S_a" class="form-control"th:value="${six.getS_a()}">
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="S_e" style="font-size: 15px;color: blue;font-weight: bold">半长轴:</label>
+            <input type="text"  id="S_e" name="S_e" class="form-control"th:value="${six.getS_e()}">
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="S_i" style="font-size: 15px;color: blue;font-weight: bold">半长轴:</label>
+            <input type="text"  id="S_i" name="S_i" class="form-control"th:value="${six.getS_i()}">
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="S_o" style="font-size: 15px;color: blue;font-weight: bold">半长轴:</label>
+            <input type="text"  id="S_o" name="S_o" class="form-control"th:value="${six.getS_o()}">
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="S_u" style="font-size: 15px;color: blue;font-weight: bold">半长轴:</label>
+            <input type="text"  id="S_u" name="S_u" class="form-control"th:value="${six.getS_u()}">
+        </div>
+        <div class="custom-input" style="margin-top: 30px;border: 2px solid;
+         border-image: linear-gradient(to right, #f00, #0f0);border-image-slice: 1;">
+            <label for="S_r" style="font-size: 15px;color: blue;font-weight: bold">半长轴:</label>
+            <input type="text"  id="S_r" name="S_r" class="form-control"th:value="${six.getS_r()}">
+        </div>
+
+
+        <div style="">
+        <input type="submit" value="提    交" class="btn btn-outline-primary btn-lg"
+               style="margin-top: 5px;margin-left: 0px;
+               border: 2px solid;font-size: 20px;width: 100px">
+        <a th:href="@{/Telesat/six_getAll}" class="btn btn-outline-secondary btn-lg"
+           style="margin-top: 5px;margin-left: 40px;width: 100px">取消</a>
+        </div>
+    </form>
+</div>
+</div>
+<script type="text/javascript" color="0,0,255" opacity='1' zIndex="-2" count="350"
+        src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

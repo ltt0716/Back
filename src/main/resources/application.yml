@@ -1,0 +1,37 @@
+server:
+#?????
+  port:8081
+spring:
+#数据源 数据据库
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://60.205.114.246:3306/MyDB?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+#   数据库用户名
+    username: root
+    password: 2325..00
+
+#模板引擎
+  thymeleaf:
+#路径前缀
+    prefix: classpath:/templates/
+#后缀
+    suffix: .html
+#页面缓存
+    cache: false
+
+#编码
+    encoding: UTF-8
+
+    mode: HTML5
+#设置静态资源可以被访问
+  mvc:
+    static-path-pattern: /static/**
+
+mybatis:
+#mybatis映射地址
+  mapper-locations: classpath:/mapper/*Mapper.xml
+#包路径
+  type-aliases-package: com.example.sate2_spring.bean
+my:
+  folder:
+    path: classpath:static/PythonCode/

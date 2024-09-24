@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>低轨卫星系统</title>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    nav {
+      font-size: 1.5rem;
+
+    }
+    h1 {
+      font-size: 2rem;
+      color: white;
+    }
+    li {
+      margin: 10px 20px;
+    }
+    #searchBox {
+      width: 300px;
+      float: right;
+    }
+  </style>
+</head>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid #000000;
+  }
+
+  /* 设置表头的样式 */
+  thead {
+    background-color: #f5f5f5;
+  }
+
+  th {
+    padding: 8px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* 设置交替行的样式 */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #ebebeb;
+  }
+
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  .table-hover tr:nth-child(odd) {
+    background-color: #f2f2f2; /* 奇数行的背景色 */
+  }
+
+  .table-hover tr:nth-child(even) {
+    background-color: #ffffff; /* 偶数行的背景色 */
+  }
+
+  .table-hover tr:hover,
+  .table-hover tr:focus {
+    background-color: orange; /* 选中行的背景色为蓝色 */
+    color: white; /* 设置选中行的文本颜色为白色，以提高可读性 */
+  }
+  .table-hover tbody tr:hover {
+    background-color: orange; /* 选中行的背景色为蓝色 */
+    color: white; /* 设置选中行的文本颜色为白色，以提高可读性 */
+  }
+</style>
+
+<body background='/static/image/bg4.jpg'
+      style="background-repeat:no-repeat;
+               background-attachment:fixed;
+               background-size:100% 100%;">
+
+
+<div class="container" style="margin-top: 40px ">
+  <a th:href="@{/Telesat/sixAddPage}"
+     class="btn btn-outline-primary btn-lg" style="background-color: #fefefe">添&nbsp;&nbsp;&nbsp;&nbsp;加</a>
+  <div style="position: relative;">
+    <table class="table table-hover" style="margin-top: 20px;">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>半长轴</th>
+        <th>离心率</th>
+        <th>轨道倾角</th>
+        <th>近心点辐角</th>
+        <th>升交点经度</th>
+        <th>真近点角</th>
+
+        <th style="text-align: center; "colspan="3">操作</th>
+      </tr>
+      </thead>
+      <tbody style="z-index: 9999">
+      <tr th:each="six: ${sixs}" >
+        <td th:text="${six.getId()}" ></td>
+        <td th:text="${six.getName()}"></td>
+        <td th:text="${six.getS_a()}" ></td>
+        <td th:text="${six.getS_e()}"></td>
+        <td th:text="${six.getS_i()}" ></td>
+        <td th:text="${six.getS_o()}"></td>
+        <td th:text="${six.getS_u()}" ></td>
+        <td th:text="${six.getS_r()}"></td>
+        <td><a th:href="@{'/Telesat/toEditPagesix/'+ ${six.getId()}}"
+               class="btn btn-outline-info"style="z-index: 9999">编辑</a></td>
+        <td><a th:href="@{'/Telesat/deletesix/' + ${six.getId()}}"
+               class="btn btn-outline-danger"style="z-index: 9999">删除</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript" color="0,0,255" opacity='1' zIndex="-2" count="350"
+        src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

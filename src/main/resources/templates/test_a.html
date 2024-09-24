@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/Css_1.css">
+    <script src="../static/libs/jquery-3.5.1/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+</head>
+<script>
+    var url="/test"
+    //监听message事件，当接收到服务器端发送的消息时触发
+    eventSource = new EventSource(url);
+    eventSource.addEventListener('custom-event', function(event) {
+        console.log(event.data);
+    });
+
+</script>
+<body>
+
+</body>
+</html>
